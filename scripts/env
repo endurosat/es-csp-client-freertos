@@ -1,0 +1,3 @@
+#!/bin/bash
+
+export ES_CLIENT_API_FREERTOS_PROJECT_ROOT=$(pwd)

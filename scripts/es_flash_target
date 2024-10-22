@@ -1,0 +1,3 @@
+#!/bin/bash
+
+openocd -f interface/stlink.cfg -f target/stm32h7x.cfg  -c "program ${ES_CLIENT_API_FREERTOS_PROJECT_ROOT}/build/es_client_lib_CM7.elf reset exit verify"

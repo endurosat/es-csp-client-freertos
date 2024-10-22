@@ -1,0 +1,11 @@
+#!/bin/bash
+
+source ./scripts/env
+source ./scripts/addtopath
+
+printf "Project root: ${ES_CLIENT_API_FREERTOS_PROJECT_ROOT}\n"
+printf "Project available utils:\n\n"
+printf "es_build - Build the project\n"
+printf "es_start_gdb_server - Start GDB server\n"
+printf "es_flash_target - Flash target device\n"
+printf "es_share_debug_uart [] - Share debug UART over the network (port: 3444)\n"

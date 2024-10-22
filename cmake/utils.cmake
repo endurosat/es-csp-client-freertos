@@ -1,0 +1,6 @@
+function(set_variable_if_empty VARIABLE_NAME DEFAULT_VALUE)
+    if (NOT ${VARIABLE_NAME})
+        set(${VARIABLE_NAME} ${DEFAULT_VALUE} PARENT_SCOPE)
+        message(STATUS "${VARIABLE_NAME} is not defined, defaulting to ${DEFAULT_VALUE}")
+    endif()
+endfunction()
