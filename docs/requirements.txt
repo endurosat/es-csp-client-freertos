@@ -1,0 +1,7 @@
+sphinx==7.2.6
+myst-parser
+sphinx_c_autodoc
+sphinxcontrib-apidoc
+sphinx-rtd-theme
+sphinx_design
+sphinx-inline-tabs
