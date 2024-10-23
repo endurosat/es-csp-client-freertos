@@ -77,7 +77,7 @@ typedef struct _es_tftp_request_t {
 /** TFTP data packet */
 typedef struct _es_tftp_data_t {
       uint16_t block_number;
-      uint8_t block[]; /**< Data: Flexible array member with size x, x ∈ [1;512] */
+      uint8_t block[]; /**< Data: Flexible array member with size x, x ∈ [1;256] */
 } es_tftp_data_t;
 #define ES_TFTP_DATA_HEADER_SIZE (sizeof(es_tftp_data_t))
 
