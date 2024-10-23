@@ -65,8 +65,8 @@ es_log_msg (const char *module, int line, int level, const char *format, ...)
         timestamp = es_log_priv.timestamp();
     }
 
-    size = snprintf((char *) buffer, LOG_BUFFER_SIZE, "%s [%s] (%d): ", module,
-        log_lvl_str[level], line);
+    size = snprintf((char *) buffer, LOG_BUFFER_SIZE, "%d %s [%s] (%d): ", timestamp,
+     module, log_lvl_str[level], line);
 
     va_list argp;
     va_start(argp, format);
