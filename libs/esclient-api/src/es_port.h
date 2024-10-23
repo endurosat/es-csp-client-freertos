@@ -27,7 +27,6 @@ int8_t es_port_file_open(es_port_file_t *fp, const uint8_t *filename, uint8_t mo
 void es_port_file_close(es_port_file_t *fp);
 int8_t es_port_file_exist(const uint8_t *filename);
 int8_t es_port_file_remove(const uint8_t *filename);
-// uint64_t es_port_file_size_get(const uint8_t *filename);
 uint64_t es_port_file_size_get(es_port_file_t *fp);
 ssize_t es_port_file_read(es_port_file_t *fp, uint8_t *data, uint32_t blksize);
 ssize_t es_port_file_write(es_port_file_t *fp, uint8_t *data, uint32_t blksize);
