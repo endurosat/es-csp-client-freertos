@@ -11,6 +11,7 @@
 #include <stdint.h>
 #include <unistd.h>
 
+#include "es_port.h"
 /*********************************** DEFINES **********************************/
 
 /** ES tftp opcode mnemonic */
@@ -107,7 +108,7 @@ typedef struct __attribute__((__packed__)) _es_tftp_pkt_t {
 } es_tftp_pkt_t;
 #define ES_TFTP_PKT_HEADER_SIZE (sizeof(uint8_t))
 
-typedef ssize_t (*es_tftp_pkt_data_get_t) (void *file_handle, uint8_t *buffer,
+typedef ssize_t (*es_tftp_pkt_data_get_t) (es_port_file_t *file_handle, uint8_t *buffer,
       uint32_t buffer_len);
 
 /************************** INTERFACE DATA DEFINITIONS ************************/
