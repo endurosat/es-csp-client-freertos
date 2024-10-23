@@ -16,7 +16,7 @@ jobs:
         if: ${{ runner.os == 'Linux' }}
         working-directory: ./docs
         run: |
-          sudo apt install clang-18
+          sudo apt install clang-14
           pip3 install -r requirements.txt
 
       - name: Build
