@@ -1,6 +1,7 @@
 FROM ubuntu
 ARG DEBIAN_FRONTEND=noninteractive
 MAINTAINER "Iliya Iliev"
+
 # Install required packages
 RUN apt-get update && \
      apt-get install --no-install-recommends --no-install-suggests -y build-essential git clang-14 cmake gcc-arm-none-eabi build-essential gdb-multiarch libnewlib-arm-none-eabi pip
@@ -25,5 +26,4 @@ ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/lib64/
 RUN ldconfig
 
 # Set working directory
-# WORKDIR /home/esclient_freertos
 CMD /bin/bash
