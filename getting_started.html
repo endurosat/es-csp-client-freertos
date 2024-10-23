@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Getting Started &mdash; ES Client API FreeRTOS</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/tabs.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script src="_static/design-tabs.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Logging" href="api/es_log_h.html" />
+    <link rel="prev" title="ES Client API FreeRTOS" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: rgba(52,49,49,1) 100%;" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ES Client API FreeRTOS
+              <img src="_static/es_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/es_log_h.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/es_client_h.html">ES Client</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="repo_layout.html">Repository Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integration.html">FreeRTOS integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_transfer.html">File Transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: rgba(52,49,49,1) 100%;" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ES Client API FreeRTOS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Getting Started</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="getting-started">
+<h1><a class="toc-backref" href="#id1" role="doc-backlink">Getting Started</a><a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h1>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#getting-started" id="id1">Getting Started</a></p>
+<ul>
+<li><p><a class="reference internal" href="#setup" id="id2">Setup</a></p>
+<ul>
+<li><p><a class="reference internal" href="#hardware" id="id3">Hardware</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#dependencies" id="id4">Dependencies</a></p></li>
+<li><p><a class="reference internal" href="#usage" id="id5">Usage</a></p></li>
+<li><p><a class="reference internal" href="#open-the-debug-uart" id="id6">Open the Debug UART</a></p></li>
+<li><p><a class="reference internal" href="#start-the-es-csp-server" id="id7">Start the ES CSP server</a></p></li>
+<li><p><a class="reference internal" href="#flash-the-target-stm32h755-nucleo-board" id="id8">Flash the target (STM32H755 Nucleo Board)</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="setup">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Setup</a><a class="headerlink" href="#setup" title="Permalink to this heading"></a></h2>
+<p>The setup consists of RPi4 acting as a server for the inbound commands issued by the
+STM32H7555 board. The RPi4 can be used also for development &amp; flashing the STM32H7555 board
+since it is running Ubuntu. The steps from this page can be executed on the RPi4 board.
+The steps marked with <img alt="Raspberry Pi" src="https://img.shields.io/badge/-RaspberryPi-C51A4A?style=for-the-badge&amp;logo=Raspberry-Pi" />
+can be executed on the Raspberry from the test setup.</p>
+<section id="hardware">
+<h3><a class="toc-backref" href="#id3" role="doc-backlink">Hardware</a><a class="headerlink" href="#hardware" title="Permalink to this heading"></a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.amazon.com/Raspberry-Model-2019-Quad-Bluetooth/dp/B07TC2BK1X/ref=sr_1_3?crid=3V6EUSV9956IA&amp;amp;dib=eyJ2IjoiMSJ9.l-BqsrQVZQ1hEJh6W55CEH9BPs8tHiIfDAEfKZ5lNNtfUFFY_T7T-tCG2A5BWlDdTsLk1xutjDpss9zKS5GRc6b2Uxz6MdgmkTscY1fhg-7W8hubsmLcNDiD4eXCsEo13f4Onx2ozdOUJWCO7CaeZ_B8nC0ZzvaddIRMPmRxj_9cwYGsMMQNKOVVoWVY9SRqkHCsQrYxUgC2AfPCO-0YThUdg1FwzKnH6nsPGp67cAk.nPtgTasTqbjg4gTZGG6l0LNMZTwuTmM_qgmcTi9iDuw&amp;amp;dib_tag=se&amp;amp;keywords=raspberry%2Bpi&amp;amp;qid=1729673886&amp;amp;sprefix=raspber%2Caps%2C194&amp;amp;sr=8-3&amp;amp;th=1">RPi4</a> (x1)</p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/HiLetgo-FT232RL-Converter-Adapter-Breakout/dp/B00IJXZQ7C/ref=sr_1_1_sspa?dib=eyJ2IjoiMSJ9.K2aU-dlTd45oLwa2bR7pJ1po1kY_2XEjzv3VnO7YVgHRxSunJPSORA3fmdJpc_Oa-zNBNwKYG9m6t0gbtZS_sWqo896WkBQMm8lghT9NcHUzaHyYxNnzqj5162EB7sqJXagYY7IfA0quD8HpIiSJNcy0-BDLn4DJdW93VEmW4XyMYv3QPmMyiJThh8AXnyTez4gGuzvMprDuhQ_dZIgipiOuKujuD60SOx5CXJfbhgY.kJZ5jFHgT_yRatCZklLa6kWHjQ3g7moW5XRRD0ShIEg&amp;amp;dib_tag=se&amp;amp;keywords=ft232rl&amp;amp;qid=1729673788&amp;amp;sr=8-1-spons&amp;amp;sp_csd=d2lkZ2V0TmFtZT1zcF9hdGY&amp;amp;psc=1">FTDI 232</a> (x1)</p></li>
+<li><p><a class="reference external" href="https://www.amazon.com/XFCZMG-NUCLEO-H755ZI-Q-Nucleo-144-Development-STM32H755ZI/dp/B0CKVZ2X7Z/ref=sr_1_1?crid=39PV2CYAK688F&amp;amp;dib=eyJ2IjoiMSJ9.vTBYp3GDS7fdalb3bym8GV968xxXVHqu3Hya2FMk9FoUqz4XuxTXbEWuwShAY3AC7CD43MM7LU0lvFj1dZXw_JLWkG17NTFx1dldlvzeVQ9fTh1tLLIZw2rJwNgSwUGDlyMwAfcl-NhvAGzxvbJkGFW1MD_yIXSaNI735PZy6nynAnR-yMc0tHWa3pWRKAqK._fceoe_HtCNZ-M0Q8Kz1ZgqmRJvP4EE1_seyqOtMDvw&amp;amp;dib_tag=se&amp;amp;keywords=nucleo+h755&amp;amp;qid=1729673847&amp;amp;sprefix=nucleoh755%2Caps%2C168&amp;amp;sr=8-1">NUCLEO H755</a> (x1)</p></li>
+<li><p><a class="reference external" href="https://www.amazon.de/-/en/ANGEEK-Modules-Compatible-Arduino-Raspberry/dp/B07S6K3RVK/">SPI SD Card Module</a> (x1)</p></li>
+<li><p>Mini USB cables (x1) - FTDI</p></li>
+<li><p>Micro USB cable (x1) - Debug UART</p></li>
+<li><p>Micro HDMI cable (x1) - Monitor</p></li>
+<li><p>Keyboard &amp; mouse</p></li>
+</ul>
+<script type="text/javascript" src="./_static/js/custom.js"></script>
+<link rel="stylesheet" type="text/css" href="./_static/css/custom.css" media="screen" />
+<div id="img-viewer">
+    <span class="close" onclick="close_model()">&times;</span>
+    <img class="modal-content" id="full-image" >
+</div>
+<div  class='img-container'>
+<img src="./_static/setup.png" class='img-source'>
+<!-- Expand Icon -->
+<img src=" data:image/png;base64,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"  class='expand-icon' onclick="full_view(this);" >
+</div>
+<br>
+<br>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please note that the FTDI chips should be configured with jumper on 3.3v</p>
+</div>
+</section>
+</section>
+<section id="dependencies">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Dependencies</a><a class="headerlink" href="#dependencies" title="Permalink to this heading"></a></h2>
+<ul class="simple">
+<li><p>cmake - Build system</p></li>
+<li><p>openocd - Flashing &amp; debug utilities</p></li>
+<li><p>gcc-arm-none-eabi - Cross compiler</p></li>
+<li><p>gdb-multiarch - Debug utility</p></li>
+<li><p>minicom - Debug utility (serial console)</p></li>
+</ul>
+<p><strong>To install the dependencies use the following command</strong></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo<span class="w"> </span>apt-get<span class="w"> </span>-y<span class="w"> </span>install<span class="w"> </span>cmake<span class="w"> </span>openocd<span class="w"> </span>gcc-arm-none-eabi<span class="w"> </span>build-essential<span class="w"> </span>gdb-multiarch<span class="w"> </span>libnewlib-arm-none-eabi<span class="w"> </span>minicom
+</pre></div>
+</div>
+</section>
+<section id="usage">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading"></a></h2>
+<p><img alt="Raspberry Pi" src="https://img.shields.io/badge/-RaspberryPi-C51A4A?style=for-the-badge&amp;logo=Raspberry-Pi" /></p>
+<ol class="arabic simple">
+<li><p>Clone the repository</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/endurosat/es-csp-client-freertos
+</pre></div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Build</p></li>
+</ol>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">source</span><span class="w"> </span>configure
+<span class="gp">$ </span>es_build
+</pre></div>
+</div>
+<p>The resulting build artefacts are stored inside the <code class="docutils literal notranslate"><span class="pre">build</span></code> directory. After a succesfull
+build the contents of this directory should look like this:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">. build</span>
+<span class="go">├── CMakeCache.txt</span>
+<span class="go">├── CMakeFiles</span>
+<span class="go">├── cmake_install.cmake</span>
+<span class="go">├── csp</span>
+<span class="go">├── esclient-api</span>
+<span class="go">├── es_client_lib_CM7.bin</span>
+<span class="go">├── es_client_lib_CM7.elf</span>
+<span class="go">├── es_client_lib_CM7.hex</span>
+<span class="go">├── es_client_lib_CM7.map</span>
+<span class="go">├── FATFS</span>
+<span class="go">├── FreeRTOS</span>
+<span class="go">├── HAL</span>
+<span class="go">└── Makefile</span>
+</pre></div>
+</div>
+</section>
+<section id="open-the-debug-uart">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Open the Debug UART</a><a class="headerlink" href="#open-the-debug-uart" title="Permalink to this heading"></a></h2>
+<p><img alt="Raspberry Pi" src="https://img.shields.io/badge/-RaspberryPi-C51A4A?style=for-the-badge&amp;logo=Raspberry-Pi" /></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>minicom<span class="w"> </span>-b<span class="w"> </span><span class="m">115200</span><span class="w"> </span>-D<span class="w"> </span>/dev/ttyACM0
+</pre></div>
+</div>
+</section>
+<section id="start-the-es-csp-server">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Start the ES CSP server</a><a class="headerlink" href="#start-the-es-csp-server" title="Permalink to this heading"></a></h2>
+<p>In order to build and start the es csp server for these <a class="reference external" href="https://endurosat.github.io/es-csp-server/">instructions</a></p>
+</section>
+<section id="flash-the-target-stm32h755-nucleo-board">
+<h2><a class="toc-backref" href="#id8" role="doc-backlink">Flash the target (STM32H755 Nucleo Board)</a><a class="headerlink" href="#flash-the-target-stm32h755-nucleo-board" title="Permalink to this heading"></a></h2>
+<p><img alt="Raspberry Pi" src="https://img.shields.io/badge/-RaspberryPi-C51A4A?style=for-the-badge&amp;logo=Raspberry-Pi" /></p>
+<p>Use the following command to flash the target.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span><span class="nb">source</span><span class="w"> </span>configure
+<span class="gp">$ </span>es_flash_target
+</pre></div>
+</div>
+<p>At this point the green LED on the development board should be toggling each 1000ms.
+The yellow LED is toggled on each byte received over the UART. The red LED is set
+if the application enters an error hook.</p>
+<p>On the debug UART similar output to the one below should be displayed:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">2 main [INFO] (47): ES Client v100</span>
+<span class="go">5 es_sd_card [INFO] (576): SD Card Mounted Successfully</span>
+<span class="go">5 es_sd_card [INFO] (580): TotalSpace : 7794688 bytes, FreeSpace = 7791264 bytes</span>
+<span class="go">5 es_client [TRACE] (54): Initializing ES Client</span>
+<span class="go">5 es_tasks [INFO] (108): Starting: Default task</span>
+<span class="go">5 es_tasks [INFO] (108): Starting: ES Client task</span>
+<span class="go"> .</span>
+<span class="go"> .</span>
+<span class="go"> .</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="ES Client API FreeRTOS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="api/es_log_h.html" class="btn btn-neutral float-right" title="Logging" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright EnduroSat.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

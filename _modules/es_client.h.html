@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>es_client.h &mdash; ES Client API FreeRTOS</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/design-tabs.js"></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+        <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+        <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+        <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: rgba(52,49,49,1) 100%;" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ES Client API FreeRTOS
+              <img src="../_static/es_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/es_log_h.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/es_client_h.html">ES Client</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../repo_layout.html">Repository Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../integration.html">FreeRTOS integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file_transfer.html">File Transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: rgba(52,49,49,1) 100%;" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ES Client API FreeRTOS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">es_client.h</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for es_client.h</h1><div class="highlight"><pre>
+<span></span><span class="cm">/*****************************************************************************</span>
+<span class="cm"> * **File:** es_client.h</span>
+<span class="cm"> *</span>
+<span class="cm"> * **Description:** ES Client API</span>
+<span class="cm"> *</span>
+<span class="cm"> * **Example Usage**</span>
+<span class="cm"> *</span>
+<span class="cm"> * .. code-block:: C</span>
+<span class="cm"> *		:caption: Initialize &amp; use the ES Client module over CSP</span>
+<span class="cm"> *		:linenos:</span>
+<span class="cm"> *		:lineno-start: 1</span>
+<span class="cm"> *		:name: &lt;es_client&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> *		es_client_init();</span>
+<span class="cm"> *		es_client_csp_tl_init(10);</span>
+<span class="cm"> *</span>
+<span class="cm"> ****************************************************************************/</span>
+<span class="cp">#ifndef __ES_CLIENT_H_INCLUDED__</span>
+<div class="viewcode-block" id="c.__ES_CLIENT_H_INCLUDED__"><span class="cp">#define __ES_CLIENT_H_INCLUDED__</span></div>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+
+<span class="cp">#ifdef __cplusplus</span>
+<span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="cp">#endif</span>
+
+<div class="viewcode-block" id="c._es_client_conn_t"><div class="viewcode-block" id="c.es_client_conn_t"><span class="cm">/*********************************** DEFINES **********************************/</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">_es_client_conn_t</span><span class="w"> </span><span class="p">{</span>
+<div class="viewcode-block" id="c._es_client_conn_t.descriptor"><div class="viewcode-block" id="c.es_client_conn_t.descriptor"><span class="w">       </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">descriptor</span><span class="p">;</span><span class="w">  </span><span class="cm">/**&lt; Connection descriptor */</span></div></div>
+<div class="viewcode-block" id="c._es_client_conn_t.dest_port"><div class="viewcode-block" id="c.es_client_conn_t.dest_port"><span class="w">       </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">dest_port</span><span class="p">;</span><span class="w">  </span><span class="cm">/**&lt; Destination port */</span></div></div>
+<span class="p">}</span><span class="w"> </span><span class="n">es_client_conn_t</span><span class="p">;</span></div></div>
+<div class="viewcode-block" id="c.es_client_conn_init_default"><span class="cp">#define es_client_conn_init_default {NULL, 0}</span></div>
+
+<span class="cm">/*********************************** TYPEDEFS *********************************/</span>
+
+<span class="cm">/******************************* INTERFACE FUNCTIONS **************************/</span>
+
+<div class="viewcode-block" id="c.es_client_init"><a class="viewcode-back" href="../api/es_client_h.html#c.es_client_init">[docs]</a><span class="cm">/**</span>
+<span class="cm"> * Initializes es client lib.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @return On success 0, -1 in case of failiure</span>
+<span class="cm"> */</span>
+<span class="kt">int8_t</span>
+<span class="nf">es_client_init</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">);</span></div>
+
+<div class="viewcode-block" id="c.es_client_deinit"><a class="viewcode-back" href="../api/es_client_h.html#c.es_client_deinit">[docs]</a><span class="cm">/**</span>
+<span class="cm"> * Deinit es_client object.</span>
+<span class="cm"> */</span>
+<span class="kt">void</span>
+<span class="nf">es_client_deinit</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">);</span></div>
+
+<div class="viewcode-block" id="c.es_client_csp_tl_init"><a class="viewcode-back" href="../api/es_client_h.html#c.es_client_csp_tl_init">[docs]</a><span class="cm">/**</span>
+<span class="cm"> * Initialize CSP as a transport layer for es_client</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param[in] dest_addr: Destination address of the module.</span>
+<span class="cm"> * @return 0 if successful, -1 if initialization failed.</span>
+<span class="cm"> */</span>
+<span class="kt">int8_t</span>
+<span class="nf">es_client_csp_tl_init</span><span class="p">(</span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">dest_addr</span><span class="p">);</span></div>
+
+
+<div class="viewcode-block" id="c.es_client_file_upload"><a class="viewcode-back" href="../api/es_client_h.html#c.es_client_file_upload">[docs]</a><span class="cm">/**</span>
+<span class="cm"> * Upload a file.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param[in] src_file: Name of the file to be uploaded.</span>
+<span class="cm"> * @param[in] dest_file: Remote location (path) on the file system where to store the file.</span>
+<span class="cm"> * @return 0 if successful, -1 if failed.</span>
+<span class="cm"> */</span>
+<span class="kt">int8_t</span>
+<span class="nf">es_client_file_upload</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">src_file</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">dest_file</span><span class="p">);</span></div>
+
+
+<div class="viewcode-block" id="c.es_client_file_download"><a class="viewcode-back" href="../api/es_client_h.html#c.es_client_file_download">[docs]</a><span class="cm">/**</span>
+<span class="cm"> * Download a file.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param[in] src_file: Path of the file to be downloaded.</span>
+<span class="cm"> * @param[in] dest_file Location on the host file system where</span>
+<span class="cm"> *  to store the file.</span>
+<span class="cm"> * @return 0 if successful, -1 if failed.</span>
+<span class="cm"> */</span>
+<span class="kt">int8_t</span>
+<span class="nf">es_client_file_download</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">src_file</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">dest_file</span><span class="p">);</span></div>
+
+<span class="cp">#ifdef __cplusplus</span>
+<span class="p">}</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#endif</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright EnduroSat.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

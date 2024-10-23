@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>es_log.h &mdash; ES Client API FreeRTOS</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/design-tabs.js"></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+        <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+        <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+        <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: rgba(52,49,49,1) 100%;" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            ES Client API FreeRTOS
+              <img src="../_static/es_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api/es_log_h.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api/es_client_h.html">ES Client</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../repo_layout.html">Repository Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../integration.html">FreeRTOS integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../file_transfer.html">File Transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../resources.html">Resources</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: rgba(52,49,49,1) 100%;" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">ES Client API FreeRTOS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">es_log.h</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for es_log.h</h1><div class="highlight"><pre>
+<span></span><span class="cm">/*****************************************************************************</span>
+<span class="cm"> * **File:** es_log.h</span>
+<span class="cm"> *</span>
+<span class="cm"> * **Description:** ES Client lib logging utility. To use this module it is required to</span>
+<span class="cm"> * &#39;attach&#39; it to a configured UART interface. The `tx` handler of the</span>
+<span class="cm"> * `log_iface` should be assigned to a functional UART transmit handler.</span>
+<span class="cm"> *</span>
+<span class="cm"> * **Example Usage**</span>
+<span class="cm"> *</span>
+<span class="cm"> * .. code-block:: C</span>
+<span class="cm"> *      :caption: Initialize the ES Client log module</span>
+<span class="cm"> *      :linenos:</span>
+<span class="cm"> *      :lineno-start: 1</span>
+<span class="cm"> *      :emphasize-lines: 6</span>
+<span class="cm"> *      :name: &lt;es_log&gt;</span>
+<span class="cm"> *</span>
+<span class="cm"> *      uint32_t baudrate = 115200;</span>
+<span class="cm"> *</span>
+<span class="cm"> *      es_log_iface_t log_iface = es_log_iface_init_default;</span>
+<span class="cm"> *      es_uart_dbg_drv_init(baudrate); // Target specific UART init function</span>
+<span class="cm"> *      log_iface.timestamp = es_system_get_tick;  // Target specific get tick handler</span>
+<span class="cm"> *      log_iface.drv_iface.tx = es_uart_dbg_drv_tx; // Target specific UART transmit handler</span>
+<span class="cm"> *      es_log_init(&amp;log_iface);</span>
+<span class="cm"> *      es_log_set_lvl(ES_INFO);</span>
+<span class="cm"> *      ES_LOG_MSG(ES_INFO, &quot;Logging Initialized&quot;);</span>
+<span class="cm"> *</span>
+<span class="cm"> ****************************************************************************/</span>
+
+<span class="cp">#ifndef ES_LOG_H_INCLUDED</span>
+<div class="viewcode-block" id="c.ES_LOG_H_INCLUDED"><span class="cp">#define ES_LOG_H_INCLUDED</span></div>
+
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stddef.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;stdint.h&gt;</span>
+
+<span class="cp">#ifdef __cplusplus</span>
+<span class="k">extern</span><span class="w"> </span><span class="s">&quot;C&quot;</span><span class="w"> </span><span class="p">{</span>
+<span class="cp">#endif</span>
+
+<span class="cm">/*********************************** DEFINES **********************************/</span>
+
+<div class="viewcode-block" id="c._es_log_lvl_t"><div class="viewcode-block" id="c.es_log_lvl_t"><a class="viewcode-back" href="../api/es_log_h.html#c.es_log_lvl_t">[docs]</a><span class="cm">/**</span>
+<span class="cm"> * ES log levels</span>
+<span class="cm"> */</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">enum</span><span class="w"> </span><span class="n">_es_log_lvl_t</span>
+<span class="p">{</span>
+<div class="viewcode-block" id="c._es_log_lvl_t.ES_TRACE"><div class="viewcode-block" id="c.es_log_lvl_t.ES_TRACE"><a class="viewcode-back" href="../api/es_log_h.html#c.es_log_lvl_t.ES_TRACE">[docs]</a><span class="w">  </span><span class="n">ES_TRACE</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="cm">/**&lt; A log level describing events showing step by step execution of your code that can be ignored during the standard operation, but may be useful during extended debugging sessions. */</span></div></div>
+<div class="viewcode-block" id="c._es_log_lvl_t.ES_DEBUG"><div class="viewcode-block" id="c.es_log_lvl_t.ES_DEBUG"><a class="viewcode-back" href="../api/es_log_h.html#c.es_log_lvl_t.ES_DEBUG">[docs]</a><span class="w">  </span><span class="n">ES_DEBUG</span><span class="p">,</span><span class="w"> </span><span class="cm">/**&lt; A log level used for events considered to be useful during software debugging when more</span>
+<span class="cm">                granular information is needed. */</span></div></div>
+<div class="viewcode-block" id="c._es_log_lvl_t.ES_INFO"><div class="viewcode-block" id="c.es_log_lvl_t.ES_INFO"><a class="viewcode-back" href="../api/es_log_h.html#c.es_log_lvl_t.ES_INFO">[docs]</a><span class="w">  </span><span class="n">ES_INFO</span><span class="p">,</span><span class="w"> </span><span class="cm">/**&lt; An event happened, the event is purely informative and can be ignored during normal operations.*/</span></div></div>
+<div class="viewcode-block" id="c._es_log_lvl_t.ES_WARNING"><div class="viewcode-block" id="c.es_log_lvl_t.ES_WARNING"><a class="viewcode-back" href="../api/es_log_h.html#c.es_log_lvl_t.ES_WARNING">[docs]</a><span class="w">  </span><span class="n">ES_WARNING</span><span class="p">,</span><span class="w"> </span><span class="cm">/**&lt; Unexpected behavior happened inside the application, but it is continuing its work and the key business features are operating as expected. */</span></div></div>
+<div class="viewcode-block" id="c._es_log_lvl_t.ES_ERROR"><div class="viewcode-block" id="c.es_log_lvl_t.ES_ERROR"><a class="viewcode-back" href="../api/es_log_h.html#c.es_log_lvl_t.ES_ERROR">[docs]</a><span class="w">  </span><span class="n">ES_ERROR</span><span class="p">,</span><span class="w"> </span><span class="cm">/**&lt; One or more functionalities are not working, preventing some functionalities from working correctly.*/</span></div></div>
+<div class="viewcode-block" id="c._es_log_lvl_t.ES_CRITICAL"><div class="viewcode-block" id="c.es_log_lvl_t.ES_CRITICAL"><a class="viewcode-back" href="../api/es_log_h.html#c.es_log_lvl_t.ES_CRITICAL">[docs]</a><span class="w">  </span><span class="n">ES_CRITICAL</span><span class="p">,</span><span class="w"> </span><span class="cm">/**&lt; One or more key business functionalities are not working and the whole system doesn’t fulfill the business functionalities. */</span></div></div>
+<div class="viewcode-block" id="c._es_log_lvl_t.ES_LVLS"><div class="viewcode-block" id="c.es_log_lvl_t.ES_LVLS"><span class="w">  </span><span class="n">ES_LVLS</span></div></div>
+<span class="p">}</span><span class="w"> </span><span class="n">es_log_lvl_t</span><span class="p">;</span></div></div>
+
+<span class="cm">/*********************************** MACROS ***********************************/</span>
+
+<div class="viewcode-block" id="c.ES_LOG_MSG"><a class="viewcode-back" href="../api/es_log_h.html#c.ES_LOG_MSG">[docs]</a><span class="cm">/**</span>
+<span class="cm"> * Log a message</span>
+<span class="cm"> *</span>
+<span class="cm"> * Args:</span>
+<span class="cm"> *  level: Log level of the message</span>
+<span class="cm"> *  msg: VA_ARGS formated message</span>
+<span class="cm"> */</span>
+<span class="cp">#define ES_LOG_MSG(level, msg, ...) es_log_msg(ES_MODULE_NAME, __LINE__, level, msg, ## __VA_ARGS__)</span></div>
+
+
+<div class="viewcode-block" id="c.ES_LOG_HEXDUMP"><a class="viewcode-back" href="../api/es_log_h.html#c.ES_LOG_HEXDUMP">[docs]</a><span class="cm">/**</span>
+<span class="cm"> * Hexdump a memory region</span>
+<span class="cm"> *</span>
+<span class="cm"> * Args:</span>
+<span class="cm"> *  desc: Description of the memory in free form text</span>
+<span class="cm"> *  mem_ptr: Memory to dump</span>
+<span class="cm"> *  len: Size of the memory to dump starting from address mem_ptr</span>
+<span class="cm"> */</span>
+<span class="cp">#define ES_LOG_HEXDUMP(desc, mem_ptr, len) es_log_hexdump(ES_MODULE_NAME, desc, mem_ptr, len)</span></div>
+
+<div class="viewcode-block" id="c.es_log_tx_hndlr_t"><span class="cm">/*********************************** TYPEDEFS *********************************/</span>
+
+<span class="k">typedef</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">es_log_tx_hndlr_t</span><span class="p">)(</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="p">,</span><span class="w"> </span><span class="kt">uint32_t</span><span class="p">);</span></div>
+<div class="viewcode-block" id="c.es_log_timestamp_hndlr_t"><span class="k">typedef</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="n">es_log_timestamp_hndlr_t</span><span class="p">)(</span><span class="kt">void</span><span class="p">);</span></div>
+
+<div class="viewcode-block" id="c._es_log_iface_t"><div class="viewcode-block" id="c.es_log_iface_t"><a class="viewcode-back" href="../api/es_log_h.html#c.es_log_iface_t">[docs]</a><span class="cm">/**</span>
+<span class="cm"> * Es log interface</span>
+<span class="cm"> *</span>
+<span class="cm"> * .. note:: In order to use the logging utility it is necessary to initialize</span>
+<span class="cm"> *           the `tx` handler.</span>
+<span class="cm"> */</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">_es_log_iface_t</span><span class="w"> </span><span class="p">{</span>
+<div class="viewcode-block" id="c._es_log_iface_t.timestamp"><div class="viewcode-block" id="c.es_log_iface_t.timestamp"><a class="viewcode-back" href="../api/es_log_h.html#c.es_log_iface_t.timestamp">[docs]</a><span class="w">    </span><span class="n">es_log_timestamp_hndlr_t</span><span class="w"> </span><span class="n">timestamp</span><span class="p">;</span><span class="w"> </span><span class="cm">/**&lt; timestamp handler */</span></div></div>
+<div class="viewcode-block" id="c._es_log_iface_t.tx"><div class="viewcode-block" id="c.es_log_iface_t.tx"><a class="viewcode-back" href="../api/es_log_h.html#c.es_log_iface_t.tx">[docs]</a><span class="w">    </span><span class="n">es_log_tx_hndlr_t</span><span class="w"> </span><span class="n">tx</span><span class="p">;</span><span class="w"> </span><span class="cm">/**&lt; TX handler */</span></div></div>
+<span class="p">}</span><span class="w"> </span><span class="n">es_log_iface_t</span><span class="p">;</span></div></div>
+<div class="viewcode-block" id="c.es_log_iface_init_default"><span class="cp">#define es_log_iface_init_default {NULL, NULL}</span></div>
+<span class="cm">/******************************* INTERFACE FUNCTIONS **************************/</span>
+
+<div class="viewcode-block" id="c.es_log_init"><a class="viewcode-back" href="../api/es_log_h.html#c.es_log_init">[docs]</a><span class="cm">/**</span>
+<span class="cm"> * Initialize es log interface.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param[in] log_iface: Reference to intialized `es_log_iface_t` structure</span>
+<span class="cm">  */</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">es_log_init</span><span class="w"> </span><span class="p">(</span><span class="n">es_log_iface_t</span><span class="w"> </span><span class="o">*</span><span class="n">log_iface</span><span class="p">);</span></div>
+
+<div class="viewcode-block" id="c.es_log_set_lvl"><a class="viewcode-back" href="../api/es_log_h.html#c.es_log_set_lvl">[docs]</a><span class="cm">/**</span>
+<span class="cm"> * Set log level</span>
+<span class="cm"> *</span>
+<span class="cm"> * @param[in] level: Log level</span>
+<span class="cm"> */</span>
+<span class="kt">void</span>
+<span class="nf">es_log_set_lvl</span><span class="w"> </span><span class="p">(</span><span class="n">es_log_lvl_t</span><span class="w"> </span><span class="n">level</span><span class="p">);</span></div>
+
+<div class="viewcode-block" id="c.es_log_get_lvl"><a class="viewcode-back" href="../api/es_log_h.html#c.es_log_get_lvl">[docs]</a><span class="cm">/**</span>
+<span class="cm"> * Get the current log level</span>
+<span class="cm"> *</span>
+<span class="cm"> * :bdg-warning-line:`Will be deprecated`</span>
+<span class="cm"> *</span>
+<span class="cm"> * @returns Returns the current log level</span>
+<span class="cm"> */</span>
+<span class="n">es_log_lvl_t</span>
+<span class="nf">es_log_get_lvl</span><span class="w"> </span><span class="p">(</span><span class="kt">void</span><span class="p">);</span></div>
+
+<div class="viewcode-block" id="c.es_log_msg"><span class="kt">void</span>
+<span class="nf">es_log_msg</span><span class="w"> </span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">module</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">level</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">format</span><span class="p">,</span><span class="w"> </span><span class="p">...);</span></div>
+<div class="viewcode-block" id="c.es_log_hexdump"><span class="kt">void</span>
+<span class="nf">es_log_hexdump</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="o">*</span><span class="w"> </span><span class="n">module</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">char</span><span class="w"> </span><span class="o">*</span><span class="n">desc</span><span class="p">,</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">mem</span><span class="p">,</span><span class="w"> </span><span class="kt">unsigned</span><span class="w"> </span><span class="kt">int</span><span class="w"> </span><span class="n">len</span><span class="p">);</span></div>
+
+<span class="cp">#ifdef __cplusplus</span>
+<span class="p">}</span>
+<span class="cp">#endif</span>
+
+<span class="cp">#endif</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright EnduroSat.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

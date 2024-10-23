@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>File Transfer &mdash; ES Client API FreeRTOS</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/tabs.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script src="_static/design-tabs.js"></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs"></script>
+        <script type="module" src="https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs"></script>
+        <script type="module">import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";import elkLayouts from "https://cdn.jsdelivr.net/npm/@mermaid-js/layout-elk@0.1.4/dist/mermaid-layout-elk.esm.min.mjs";mermaid.registerLayoutLoaders(elkLayouts);mermaid.initialize({startOnLoad:false});</script>
+        <script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+        <script type="module">
+import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.esm.min.mjs";
+window.addEventListener("load", () => mermaid.run());
+</script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Changelog" href="changelog.html" />
+    <link rel="prev" title="FreeRTOS integration" href="integration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: rgba(52,49,49,1) 100%;" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ES Client API FreeRTOS
+              <img src="_static/es_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/es_log_h.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/es_client_h.html">ES Client</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="repo_layout.html">Repository Structure</a></li>
+<li class="toctree-l1"><a class="reference internal" href="integration.html">FreeRTOS integration</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">File Transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: rgba(52,49,49,1) 100%;" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ES Client API FreeRTOS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">File Transfer</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="file-transfer">
+<h1><a class="toc-backref" href="#id1" role="doc-backlink">File Transfer</a><a class="headerlink" href="#file-transfer" title="Permalink to this heading"></a></h1>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#file-transfer" id="id1">File Transfer</a></p>
+<ul>
+<li><p><a class="reference internal" href="#brief" id="id2">Brief</a></p></li>
+<li><p><a class="reference internal" href="#file-upload-wrq" id="id3">File upload (WRQ)</a></p></li>
+<li><p><a class="reference internal" href="#file-download-rrq" id="id4">File download (RRQ)</a></p></li>
+<li><p><a class="reference internal" href="#faqs" id="id5">FAQs</a></p></li>
+<li><p><a class="reference internal" href="#es-tftp-implementation" id="id6">ES TFTP Implementation</a></p>
+<ul>
+<li><p><a class="reference internal" href="#opcodes" id="id7">Opcodes</a></p></li>
+<li><p><a class="reference internal" href="#error-codes" id="id8">Error codes</a></p></li>
+<li><p><a class="reference internal" href="#packets" id="id9">Packets</a></p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="brief">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Brief</a><a class="headerlink" href="#brief" title="Permalink to this heading"></a></h2>
+<p>This page describes the file transfer protocol, how to use the API to upload/download
+files and the limitations of it.</p>
+<p>A file transfer is initiated with either write request (file upload) WRQ or
+read request (file download) RRQ. The contents of the file are exchanged using data
+packets with block size of 256 bytes. A data packet of less than block size of 256
+bytes signals termination of a transfer. Notice that both sides involved in a
+transfer are considered senders and receivers. One sends data and receives
+acknowledgments, the other sends acknowledgments and receives data.</p>
+<p>An error cause termination of the connection. An error is signalled by sending
+an error packet. This packet is not acknowledged.</p>
+<p>Errors are caused by three types of events: not being able to satisfy the
+request (e.g., file not found, access violation), receiving a packet which
+cannot be decoded and losing access to a necessary resource (e.g., disk
+full or access denied during a transfer).</p>
+</section>
+<section id="file-upload-wrq">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">File upload (WRQ)</a><a class="headerlink" href="#file-upload-wrq" title="Permalink to this heading"></a></h2>
+<p>To initiate a transfer from the host device to the remote device the <code class="docutils literal notranslate"><span class="pre">es_client_file_upload</span></code>
+function is used.</p>
+<p><em>Example of starting file upload</em></p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cm">/* esclient core library */</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;esclient.h&gt;</span>
+
+<span class="n">es_client_file_upload</span><span class="p">(</span><span class="s">&quot;/file/path/on/the/host/device&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/file/path/on/the/remote/device&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The request/response pkts excahnged between the client and the server will look like
+this.</p>
+<pre  class="mermaid">
+        %%{init: {'theme': 'neutral'}}%%
+sequenceDiagram
+    participant C as ES Client
+    participant S as ES Server
+
+    activate C
+    Note left of C: request packet&lt;br/&gt;opcode: ES_TFTP_WRQ&lt;br/&gt;filename: FileName&lt;br/&gt;
+    C-&gt;&gt;S: WRQ
+    deactivate C
+
+    activate S
+    Note right of S: ack packet&lt;br/&gt;opcode:ES_TFTP_ACK&lt;br/&gt;block_number:0&lt;br/&gt;
+    S-&gt;&gt;C: ACK (0)
+    deactivate S
+
+    activate C
+    Note left of C: DATA packet&lt;br/&gt;opcode:ES_TFTP_DATA&lt;br/&gt;block_number:1&lt;br/&gt;data: 256bytes&lt;br/&gt;
+    C-&gt;&gt;S: DATA (1)
+    deactivate C
+
+    activate S
+    Note right of S: ack packet&lt;br/&gt;opcode:ES_TFTP_ACK&lt;br/&gt;block_number:1 &lt;br/&gt;
+    S-&gt;&gt;C: ACK (1)
+    deactivate S
+
+    activate C
+    Note left of C: DATA packet&lt;br/&gt;opcode:ES_TFTP_DATA&lt;br/&gt;block_number:2&lt;br/&gt;data: 256bytes&lt;br/&gt;
+    C-&gt;&gt;S: DATA (2)
+    deactivate C
+
+    activate S
+    Note right of S: ack packet&lt;br/&gt;opcode:ES_TFTP_ACK&lt;br/&gt;block_number:2&lt;br/&gt;
+    S-&gt;&gt;C: ACK (2)
+    deactivate S
+
+    activate C
+    Note left of C: DATA packet&lt;br/&gt;opcode:ES_TFTP_DATA&lt;br/&gt;block_number:N&lt;br/&gt;data: &lt; 512bytes&lt;br/&gt;
+    C-&gt;&gt;S: DATA (N)
+    deactivate C
+
+    activate S
+    Note right of S: ack packet&lt;br/&gt;opcode:ES_TFTP_ACK&lt;br/&gt;block_number:N&lt;br/&gt;
+    S-&gt;&gt;C: ACK (N)
+    deactivate S
+    </pre></section>
+<section id="file-download-rrq">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">File download (RRQ)</a><a class="headerlink" href="#file-download-rrq" title="Permalink to this heading"></a></h2>
+<p>To initiate a transfer from the server to the host device the <code class="docutils literal notranslate"><span class="pre">es_client_file_download</span></code>
+function is used.</p>
+<p><em>Example of starting file download</em></p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cm">/* esclient core library */</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;esclient.h&gt;</span>
+
+<span class="n">es_client_file_download</span><span class="p">(</span><span class="s">&quot;/file/path/on/the/remote/device&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/file/path/on/the/host/device&quot;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The request/response pkts excahnged between the client and the server will look like this:</p>
+<pre  class="mermaid">
+        %%{init: {'theme': 'neutral'}}%%
+sequenceDiagram
+    participant C as ES Client
+    participant S as ES Server
+
+    activate C
+    Note left of C: request packet&lt;br/&gt;opcode:ES_TFTP_RRQ&lt;br/&gt;filename: FileName&lt;br/&gt;
+    C-&gt;&gt;S: RRQ
+    deactivate C
+
+    activate S
+    Note right of S: DATA packet&lt;br/&gt;opcode:ES_TFTP_DATA &lt;br/&gt;block_number:1 data: 512bytes&lt;br/&gt;
+    S-&gt;&gt;C: DATA (1)
+    deactivate S
+
+    activate C
+    Note left of C: ack packet&lt;br/&gt;opcode:ES_TFTP_ACK&lt;br/&gt;block_number:1&lt;br/&gt;
+    C-&gt;&gt;S: ACK (1)
+    deactivate C
+
+    activate S
+    Note right of S: DATA packet&lt;br/&gt;opcode:ES_TFTP_DATA &lt;br/&gt;block_number:2 data: 512bytes&lt;br/&gt;
+    S-&gt;&gt;C: DATA (2)
+    deactivate S
+
+    activate C
+    Note left of C: ack packet&lt;br/&gt;opcode:ES_TFTP_ACK&lt;br/&gt;block_number:2&lt;br/&gt;
+    C-&gt;&gt;S: ACK (2)
+    deactivate C
+
+    activate S
+    Note right of S: DATA packet&lt;br/&gt;opcode:ES_TFTP_DATA &lt;br/&gt;block_number:N data: &lt; 512bytes&lt;br/&gt;
+    S-&gt;&gt;C: DATA (N)
+    deactivate S
+
+    activate C
+    Note left of C: ack packet&lt;br/&gt;opcode:ES_TFTP_ACK&lt;br/&gt;block_number: N&lt;br/&gt;
+    C-&gt;&gt;S: ACK (N)
+    deactivate C
+    </pre></section>
+<section id="faqs">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">FAQs</a><a class="headerlink" href="#faqs" title="Permalink to this heading"></a></h2>
+<p><em>What happens if we want to upload/download a file which already exists on the remote/local
+file system?</em></p>
+<p>The files are always truncated (deleted) in case they already exist on the file system.</p>
+</section>
+<section id="es-tftp-implementation">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">ES TFTP Implementation</a><a class="headerlink" href="#es-tftp-implementation" title="Permalink to this heading"></a></h2>
+<section id="opcodes">
+<h3><a class="toc-backref" href="#id7" role="doc-backlink">Opcodes</a><a class="headerlink" href="#opcodes" title="Permalink to this heading"></a></h3>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.es_tftp_opcode_t">
+<span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">es_tftp_opcode_t</span></span></span><a class="headerlink" href="#c.es_tftp_opcode_t" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_opcode_t"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>ES tftp opcode mnemonic</p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.es_tftp_opcode_t.ES_TFTP_ACK">
+<span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ES_TFTP_ACK</span></span></span><a class="headerlink" href="#c.es_tftp_opcode_t.ES_TFTP_ACK" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_opcode_t.ES_TFTP_ACK"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Acknowedge packet.</p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.es_tftp_opcode_t.ES_TFTP_DATA">
+<span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ES_TFTP_DATA</span></span></span><a class="headerlink" href="#c.es_tftp_opcode_t.ES_TFTP_DATA" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_opcode_t.ES_TFTP_DATA"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Data packet.</p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.es_tftp_opcode_t.ES_TFTP_ERROR">
+<span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ES_TFTP_ERROR</span></span></span><a class="headerlink" href="#c.es_tftp_opcode_t.ES_TFTP_ERROR" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_opcode_t.ES_TFTP_ERROR"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Error packet.</p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.es_tftp_opcode_t.ES_TFTP_RRQ">
+<span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ES_TFTP_RRQ</span></span></span><a class="headerlink" href="#c.es_tftp_opcode_t.ES_TFTP_RRQ" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_opcode_t.ES_TFTP_RRQ"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Read request. Request a transfer of a file from the              server to the client</p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.es_tftp_opcode_t.ES_TFTP_WRQ">
+<span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ES_TFTP_WRQ</span></span></span><a class="headerlink" href="#c.es_tftp_opcode_t.ES_TFTP_WRQ" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_opcode_t.ES_TFTP_WRQ"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Write request. Request a transfer of a file from the              client to the server</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="error-codes">
+<h3><a class="toc-backref" href="#id8" role="doc-backlink">Error codes</a><a class="headerlink" href="#error-codes" title="Permalink to this heading"></a></h3>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.es_tftp_err_code_t">
+<span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">es_tftp_err_code_t</span></span></span><a class="headerlink" href="#c.es_tftp_err_code_t" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_err_code_t"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>ES tftp Error Codes</p>
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.es_tftp_err_code_t.ES_TFTP_ERR_ACESS_VIOLATION">
+<span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ES_TFTP_ERR_ACESS_VIOLATION</span></span></span><a class="headerlink" href="#c.es_tftp_err_code_t.ES_TFTP_ERR_ACESS_VIOLATION" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_err_code_t.ES_TFTP_ERR_ACESS_VIOLATION"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>This error is seen when we ask for a file              on which we do not have the right to read or write.</p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.es_tftp_err_code_t.ES_TFTP_ERR_DISK_FULL_OR_ALLOCATION_EXCEEDED">
+<span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ES_TFTP_ERR_DISK_FULL_OR_ALLOCATION_EXCEEDED</span></span></span><a class="headerlink" href="#c.es_tftp_err_code_t.ES_TFTP_ERR_DISK_FULL_OR_ALLOCATION_EXCEEDED" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_err_code_t.ES_TFTP_ERR_DISK_FULL_OR_ALLOCATION_EXCEEDED"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>TFTP client receives this              error when there is limited storage area on the server.</p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.es_tftp_err_code_t.ES_TFTP_ERR_FILE_NOT_FOUND">
+<span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ES_TFTP_ERR_FILE_NOT_FOUND</span></span></span><a class="headerlink" href="#c.es_tftp_err_code_t.ES_TFTP_ERR_FILE_NOT_FOUND" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_err_code_t.ES_TFTP_ERR_FILE_NOT_FOUND"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>The client receives this error code when the              requested file does not exist.</p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.es_tftp_err_code_t.ES_TFTP_ERR_ILLEGAL_TFTP_OPERATION">
+<span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ES_TFTP_ERR_ILLEGAL_TFTP_OPERATION</span></span></span><a class="headerlink" href="#c.es_tftp_err_code_t.ES_TFTP_ERR_ILLEGAL_TFTP_OPERATION" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_err_code_t.ES_TFTP_ERR_ILLEGAL_TFTP_OPERATION"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Any TFTP packet does not follow the RFC is              called illegal. A packet with an unknown opcode, a packet with a malformed              payload, or a packet that is out of sequence with the normal              flow of commands/responses would all be considered “illegal”</p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.es_tftp_err_code_t.ES_TFTP_ERR_NO_SUCH_USER">
+<span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ES_TFTP_ERR_NO_SUCH_USER</span></span></span><a class="headerlink" href="#c.es_tftp_err_code_t.ES_TFTP_ERR_NO_SUCH_USER" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_err_code_t.ES_TFTP_ERR_NO_SUCH_USER"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Unused              Once the protocol was first adopted, it supported three modes of transferring,              which were netascii, octet and mail mode, which was used for sending              files to an email address. This error is received when the recipient              username does not exist on the server. This mode is not used anymore.
+.. note:: We do not support the mode field.</p>
+</dd></dl>
+
+<dl class="c enumerator">
+<dt class="sig sig-object c" id="c.es_tftp_err_code_t.ES_TFTP_ERR_UNKNOWN_TRANSFER_ID">
+<span class="k"><span class="pre">enumerator</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">ES_TFTP_ERR_UNKNOWN_TRANSFER_ID</span></span></span><a class="headerlink" href="#c.es_tftp_err_code_t.ES_TFTP_ERR_UNKNOWN_TRANSFER_ID" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_err_code_t.ES_TFTP_ERR_UNKNOWN_TRANSFER_ID"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>When a TFTP client sends a duplicate read request              (typically this happens when the first read request times out),              the requests may create an unexpected situation on the server.</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="packets">
+<h3><a class="toc-backref" href="#id9" role="doc-backlink">Packets</a><a class="headerlink" href="#packets" title="Permalink to this heading"></a></h3>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cm">/* ES TFTP Packet structure */</span>
+<span class="k">typedef</span><span class="w"> </span><span class="k">struct</span><span class="w"> </span><span class="nc">__attribute__</span><span class="p">((</span><span class="n">__packed__</span><span class="p">))</span><span class="w"> </span><span class="n">_es_tftp_pkt_t</span><span class="w"> </span><span class="p">{</span>
+<span class="w">      </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">opcode</span><span class="p">;</span><span class="w"> </span><span class="cm">/**&lt; Packet type @see es_tftp_opcode_t */</span>
+<span class="w">      </span><span class="k">union</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">es_tftp_request_t</span><span class="w"> </span><span class="n">request</span><span class="p">;</span>
+<span class="w">            </span><span class="n">es_tftp_data_t</span><span class="w"> </span><span class="n">data</span><span class="p">;</span>
+<span class="w">            </span><span class="n">es_tftp_ack_t</span><span class="w"> </span><span class="n">ack</span><span class="p">;</span>
+<span class="w">            </span><span class="n">es_tftp_err_t</span><span class="w"> </span><span class="n">err</span><span class="p">;</span>
+<span class="w">       </span><span class="p">};</span>
+<span class="p">}</span><span class="w"> </span><span class="n">es_tftp_pkt_t</span><span class="p">;</span>
+</pre></div>
+</div>
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.es_tftp_request_t">
+<span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">es_tftp_request_t</span></span></span><a class="headerlink" href="#c.es_tftp_request_t" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_request_t"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>TFTP request packet</p>
+<dl class="c member">
+<dt class="sig sig-object c" id="c.es_tftp_request_t.filename">
+<span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">filename</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.es_tftp_request_t.filename" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_request_t.filename"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>File system path. Flexible array member with size x,                                           x ∈ [1;512]</p>
+</dd></dl>
+
+<dl class="c member">
+<dt class="sig sig-object c" id="c.es_tftp_request_t.mode">
+<span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">mode</span></span></span><a class="headerlink" href="#c.es_tftp_request_t.mode" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_request_t.mode"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Mode (Unused)</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.es_tftp_data_t">
+<span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">es_tftp_data_t</span></span></span><a class="headerlink" href="#c.es_tftp_data_t" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_data_t"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>TFTP data packet</p>
+<dl class="c member">
+<dt class="sig sig-object c" id="c.es_tftp_data_t.block">
+<span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">block</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.es_tftp_data_t.block" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_data_t.block"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Data: Flexible array member with size x, x ∈ [1;256]</p>
+</dd></dl>
+
+<dl class="c member">
+<dt class="sig sig-object c" id="c.es_tftp_data_t.block_number">
+<span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">block_number</span></span></span><a class="headerlink" href="#c.es_tftp_data_t.block_number" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_data_t.block_number"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.es_tftp_ack_t">
+<span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">es_tftp_ack_t</span></span></span><a class="headerlink" href="#c.es_tftp_ack_t" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_ack_t"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>TFTP acknowedge packet</p>
+<dl class="c member">
+<dt class="sig sig-object c" id="c.es_tftp_ack_t.block_number">
+<span class="n"><span class="pre">uint16_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">block_number</span></span></span><a class="headerlink" href="#c.es_tftp_ack_t.block_number" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_ack_t.block_number"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="c struct">
+<dt class="sig sig-object c" id="c.es_tftp_err_t">
+<span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">es_tftp_err_t</span></span></span><a class="headerlink" href="#c.es_tftp_err_t" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_err_t"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>TFTP error packet</p>
+<dl class="c member">
+<dt class="sig sig-object c" id="c.es_tftp_err_t.code">
+<span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">code</span></span></span><a class="headerlink" href="#c.es_tftp_err_t.code" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_err_t.code"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Error code.
+es_tftp_err_code_t</p>
+</dd></dl>
+
+<dl class="c member">
+<dt class="sig sig-object c" id="c.es_tftp_err_t.msg">
+<span class="n"><span class="pre">uint8_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">msg</span></span></span><span class="p"><span class="pre">[</span></span><span class="p"><span class="pre">]</span></span><a class="headerlink" href="#c.es_tftp_err_t.msg" title="Permalink to this definition"></a><br /><a class="reference internal" href="_modules/es_tftp_pkt.h.html#c.es_tftp_err_t.msg"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+<dd><p>Error mesasge in free text format.                                    Flexible array member with size x, x ∈ [1;512]</p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="integration.html" class="btn btn-neutral float-left" title="FreeRTOS integration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="changelog.html" class="btn btn-neutral float-right" title="Changelog" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright EnduroSat.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

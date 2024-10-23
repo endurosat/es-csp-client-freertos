@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FreeRTOS integration &mdash; ES Client API FreeRTOS</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css" />
+      <link rel="stylesheet" type="text/css" href="_static/tabs.css" />
+      <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+      <link rel="stylesheet" type="text/css" href="_static/sphinx-design.5ea377869091fd0449014c60fc090103.min.css" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/tabs.js"></script>
+        <script src="_static/clipboard.min.js"></script>
+        <script src="_static/copybutton.js"></script>
+        <script src="_static/design-tabs.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="File Transfer" href="file_transfer.html" />
+    <link rel="prev" title="Repository Structure" href="repo_layout.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: rgba(52,49,49,1) 100%;" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            ES Client API FreeRTOS
+              <img src="_static/es_logo.png" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                v1.0.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Usage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/es_log_h.html">Logging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/es_client_h.html">ES Client</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Development</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="repo_layout.html">Repository Structure</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">FreeRTOS integration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="file_transfer.html">File Transfer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changelog.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="resources.html">Resources</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: rgba(52,49,49,1) 100%;" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ES Client API FreeRTOS</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">FreeRTOS integration</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="freertos-integration">
+<h1><a class="toc-backref" href="#id1" role="doc-backlink">FreeRTOS integration</a><a class="headerlink" href="#freertos-integration" title="Permalink to this heading"></a></h1>
+<nav class="contents" id="contents">
+<p class="topic-title">Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#freertos-integration" id="id1">FreeRTOS integration</a></p>
+<ul>
+<li><p><a class="reference internal" href="#freertos-port" id="id2">FreeRTOS port</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>The platform on which the <code class="docutils literal notranslate"><span class="pre">esclient-api</span></code> is used will expect that the CSP stack
+has been initialized.</p>
+<p>The following code block from the demo app which resides in the <code class="docutils literal notranslate"><span class="pre">app/src/main.c</span></code>
+file initializes UART driver with baudrate of <code class="docutils literal notranslate"><span class="pre">115200</span></code> and uses this UART
+as a KISS interface (see <code class="docutils literal notranslate"><span class="pre">es_csp.c</span></code>).</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Initialize UART driver &amp; CSP lib. This functionality should not</span>
+<span class="cm">     * be ported. It is only used to provide a working example.</span>
+<span class="cm">     */</span>
+<span class="w">    </span><span class="n">es_csp_uart_drv_t</span><span class="w"> </span><span class="n">uart_drv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">es_csp_uart_drv_init_default</span><span class="p">;</span>
+<span class="w">    </span><span class="n">es_uart_csp_drv_init</span><span class="p">(</span><span class="n">ES_APPLICATION_UART_BAUDRATE</span><span class="p">);</span>
+<span class="w">    </span><span class="n">uart_drv</span><span class="p">.</span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">es_uart_csp_drv_tx</span><span class="p">;</span>
+<span class="w">    </span><span class="n">es_csp_conf_t</span><span class="w"> </span><span class="n">es_csp_conf</span><span class="p">;</span>
+<span class="w">    </span><span class="n">es_csp_conf</span><span class="p">.</span><span class="n">s_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">11</span><span class="p">;</span>
+<span class="w">    </span><span class="n">es_csp_conf</span><span class="p">.</span><span class="n">phy_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ES_CSP_UART</span><span class="p">;</span>
+<span class="w">    </span><span class="n">es_csp_conf</span><span class="p">.</span><span class="n">drv_iface</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">uart_drv</span><span class="p">;</span>
+<span class="w">    </span><span class="n">es_csp_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">es_csp_conf</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>Note: To use CAN as physical layer instead of UART it should be initialized.</strong></p>
+<p>The following intiliazation has been provided in the demo application:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="n">es_csp_can_drv_t</span><span class="w"> </span><span class="n">can_drv</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">es_csp_can_drv_init_default</span><span class="p">;</span>
+<span class="n">can_drv</span><span class="p">.</span><span class="n">tx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">es_can_csp_drv_tx</span><span class="p">;</span><span class="w"> </span><span class="c1">// NOTE:</span>
+<span class="cm">/**</span>
+<span class="cm"> * es_can_csp_drv_tx is a function of type:</span>
+<span class="cm"> * int (*es_csp_can_tx_t)(void *, uint32_t, const uint8_t *, uint8_t)</span>
+<span class="cm"> */</span>
+<span class="n">es_csp_conf_t</span><span class="w"> </span><span class="n">es_csp_conf</span><span class="p">;</span>
+<span class="n">es_csp_conf</span><span class="p">.</span><span class="n">s_addr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ES_HOST_CSP_ADDRESS</span><span class="p">;</span>
+<span class="n">es_csp_conf</span><span class="p">.</span><span class="n">phy_type</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ES_CSP_CAN</span><span class="p">;</span>
+<span class="n">es_csp_conf</span><span class="p">.</span><span class="n">drv_iface</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">&amp;</span><span class="n">can_drv</span><span class="p">;</span>
+<span class="n">es_csp_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">es_csp_conf</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>After initializing the CSP stack these two functions should be called:</p>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="cp">#define CSP_ADDRESS 10</span>
+
+<span class="w">    </span><span class="n">es_client_init</span><span class="p">();</span>
+<span class="w">    </span><span class="n">es_client_csp_tl_init</span><span class="p">(</span><span class="n">CSP_ADDRESS</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>The first one basically initializes the command handlers and the second one the CSP
+as transport layer for the <code class="docutils literal notranslate"><span class="pre">esclient-api</span></code> library. After performing these steps the
+library should be functional and able to transfer files with <code class="docutils literal notranslate"><span class="pre">es_client_file_upload</span></code>
+and <code class="docutils literal notranslate"><span class="pre">es_client_file_download</span></code>.</p>
+<section id="freertos-port">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">FreeRTOS port</a><a class="headerlink" href="#freertos-port" title="Permalink to this heading"></a></h2>
+<p>The following steps should be performed in order for the <code class="docutils literal notranslate"><span class="pre">esclient-api</span></code> to be able
+to use CSP as tranport layer.</p>
+<p>In this example code we are using UART as physical and the KISS protocol.</p>
+<ol class="arabic simple">
+<li><p>Initialize UART &amp; attach rx handler (uart_csp_drv_rx_cb).</p></li>
+</ol>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cm">/***</span>
+<span class="cm"> * UART HAL Init</span>
+<span class="cm"> *</span>
+<span class="cm"> * reference file: app/src/es_uart_csp_drv.c</span>
+<span class="cm"> **/</span>
+<span class="k">static</span><span class="w"> </span><span class="n">UART_HandleTypeDef</span><span class="w"> </span><span class="n">huart4</span><span class="p">;</span><span class="w"> </span><span class="cm">/* CSP UART Handle */</span>
+<span class="k">static</span><span class="w"> </span><span class="k">volatile</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">i_byte</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="k">static</span><span class="w"> </span><span class="n">BaseType_t</span><span class="w"> </span><span class="n">pxTaskWoken</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pdFALSE</span><span class="p">;</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">uart_init</span><span class="p">()</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/**</span>
+<span class="cm">     * Initialize UART, NVIC here</span>
+<span class="cm">     * .</span>
+<span class="cm">     * .</span>
+<span class="cm">     * .</span>
+<span class="cm">     */</span>
+
+<span class="w">    </span><span class="cm">/* Attach csp rx handler ~ uart_csp_drv_rx_cb */</span>
+<span class="w">    </span><span class="n">HAL_UART_RegisterCallback</span><span class="p">(</span><span class="o">&amp;</span><span class="n">huart4</span><span class="p">,</span><span class="w"> </span><span class="n">HAL_UART_RX_COMPLETE_CB_ID</span><span class="p">,</span>
+<span class="w">        </span><span class="n">uart_csp_drv_rx_cb</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">HAL_UART_Receive_IT</span><span class="p">(</span><span class="o">&amp;</span><span class="n">huart4</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">i_byte</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">es_uart_csp_drv_rx_cb</span><span class="p">(</span><span class="n">UART_HandleTypeDef</span><span class="o">*</span><span class="w"> </span><span class="n">huart</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">es_csp_uart_frame_rx</span><span class="p">((</span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">i_byte</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">pxTaskWoken</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">HAL_OK</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">HAL_UART_Receive_IT</span><span class="p">(</span><span class="o">&amp;</span><span class="n">huart4</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="o">*</span><span class="p">)</span><span class="o">&amp;</span><span class="n">i_byte</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="w">        </span><span class="k">return</span><span class="p">;</span>
+<span class="w">    </span><span class="n">es_system_toggle_yellow_led</span><span class="p">();</span>
+<span class="p">}</span>
+
+<span class="kt">int</span><span class="w"> </span><span class="nf">uart_csp_drv_tx</span><span class="p">(</span><span class="kt">void</span><span class="w"> </span><span class="o">*</span><span class="n">drv_data</span><span class="p">,</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">uint8_t</span><span class="w"> </span><span class="o">*</span><span class="n">o_frame</span><span class="p">,</span><span class="w"> </span><span class="kt">size_t</span><span class="w"> </span><span class="n">o_frame_len</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1000</span><span class="p">;</span>
+<span class="w">    </span><span class="n">HAL_UART_Transmit</span><span class="p">(</span><span class="o">&amp;</span><span class="n">huart4</span><span class="p">,</span><span class="w"> </span><span class="n">o_frame</span><span class="p">,</span><span class="w"> </span><span class="n">o_frame_len</span><span class="p">,</span><span class="w"> </span><span class="n">timeout</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Initialize and configure UART peripheral attaching the <code class="docutils literal notranslate"><span class="pre">es_csp_uart_frame_rx</span> <span class="pre">(csp_kiss_rx)</span></code> handler to process the inbound byte stream.</p></li>
+<li><p>Initialize CSP lib &amp; add kiss interface to it with a valid tx handler <code class="docutils literal notranslate"><span class="pre">es_uart_csp_drv_tx</span></code>.</p></li>
+</ul>
+<p><a class="reference external" href="https://libcsp.github.io/libcsp/api/interfaces/csp_if_kiss_h.html#interface-functions">CSP Reference doc</a></p>
+<p>To use CAN:</p>
+<ul class="simple">
+<li><p>Initialize and configure CAN peripheral attaching the <code class="docutils literal notranslate"><span class="pre">es_csp_can_frame_rx</span> <span class="pre">(csp_can_rx)</span></code> handler to process the inbound byte stream.</p></li>
+<li><p>Initialize CSP lib &amp; add kiss interface to it with a valid tx handler <code class="docutils literal notranslate"><span class="pre">es_can_csp_drv_tx</span></code>.</p></li>
+</ul>
+<p><a class="reference external" href="https://libcsp.github.io/libcsp/api/interfaces/csp_if_can_h.html#interface-functions">CSP Reference doc</a></p>
+<ol class="arabic simple" start="2">
+<li><p>Initialize CSP.</p></li>
+</ol>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="cp">#define ES_CSP_TASK_STACK_SIZE                   500</span>
+<span class="cp">#define ES_CSP_TASK_PRIORITY                     0</span>
+
+<span class="cm">/***</span>
+<span class="cm"> * CSP Init</span>
+<span class="cm"> *</span>
+<span class="cm"> * reference file: app/src/es_csp.c</span>
+<span class="cm"> ***/</span>
+<span class="kt">int8_t</span><span class="w"> </span><span class="nf">es_csp_init</span><span class="p">(</span><span class="n">es_csp_conf_t</span><span class="w"> </span><span class="o">*</span><span class="n">es_csp_conf</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">csp_conf_t</span><span class="w"> </span><span class="n">csp_conf</span><span class="p">;</span>
+
+<span class="w">    </span><span class="cm">/* Init CSP with address and default settings */</span>
+<span class="w">    </span><span class="n">csp_conf_get_defaults</span><span class="p">(</span><span class="o">&amp;</span><span class="n">csp_conf</span><span class="p">);</span>
+<span class="w">    </span><span class="n">csp_conf</span><span class="p">.</span><span class="n">address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">es_csp_conf</span><span class="o">-&gt;</span><span class="n">s_addr</span><span class="p">;</span>
+<span class="w">    </span><span class="n">csp_conf</span><span class="p">.</span><span class="n">buffer_data_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ES_CSP_MTU</span><span class="p">;</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">csp_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">csp_conf</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">CSP_ERR_NONE</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">es_csp_ctx</span><span class="p">.</span><span class="n">physical</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">es_csp_conf</span><span class="o">-&gt;</span><span class="n">phy_type</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/** Note this function calls</span>
+<span class="cm">    * the physical layer intialization (UART / CAN). The test setup has been only</span>
+<span class="cm">    * used with UART.</span>
+<span class="cm">    *</span>
+<span class="cm">    */</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">es_csp_phy_init</span><span class="p">[</span><span class="n">es_csp_ctx</span><span class="p">.</span><span class="n">physical</span><span class="p">](</span><span class="n">es_csp_conf</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ret</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="mi">-1</span><span class="p">;</span>
+<span class="w">    </span><span class="n">csp_route_start_task</span><span class="p">(</span><span class="n">ES_CSP_TASK_STACK_SIZE</span><span class="p">,</span><span class="w"> </span><span class="n">ES_CSP_TASK_PRIORITY</span><span class="p">);</span>
+
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The only difference is in the physical layer all the application code above is indiferent to the layer used.</p>
+<ol class="arabic simple" start="3">
+<li><p>Initialize the <code class="docutils literal notranslate"><span class="pre">esclient-api</span></code> lib and use it for communication with the module.</p></li>
+</ol>
+<div class="highlight-C notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;esclient.h&quot;</span>
+
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">csp_address</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+
+<span class="w">    </span><span class="n">es_client_init</span><span class="p">();</span>
+<span class="w">    </span><span class="n">es_client_csp_tl_init</span><span class="p">(</span><span class="n">csp_address</span><span class="p">);</span>
+
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">es_client_file_upload</span><span class="p">(</span><span class="s">&quot;/path/to/host/filesystem/filename&quot;</span><span class="p">,</span>
+<span class="w">     </span><span class="s">&quot;/path/to/remote/filesystem/filename&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ret</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ES_LOG_MSG</span><span class="p">(</span><span class="n">ES_ERROR</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;File upload failed&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="repo_layout.html" class="btn btn-neutral float-left" title="Repository Structure" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="file_transfer.html" class="btn btn-neutral float-right" title="File Transfer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright EnduroSat.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
