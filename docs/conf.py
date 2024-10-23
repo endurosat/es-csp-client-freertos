@@ -3,12 +3,12 @@ import os
 import clang.cindex as cl
 
 # -- Constatns ---------------------------------------------------------------
-LLVM_18_LIB_PATH = '/usr/lib/llvm-18/lib/libclang-18.so.1'
+LLVM_14_LIB_PATH = '/usr/lib/llvm-14/lib/libclang-14.so.1'
 
 # -- Path setup --------------------------------------------------------------
-if os.path.isfile(LLVM_18_LIB_PATH):
-    cl.Config.set_library_file(LLVM_18_LIB_PATH)
-    cl.Config.set_library_path(LLVM_18_LIB_PATH)
+if os.path.isfile(LLVM_14_LIB_PATH):
+    cl.Config.set_library_file(LLVM_14_LIB_PATH)
+    cl.Config.set_library_path(LLVM_14_LIB_PATH)
 
 # -- Project information -----------------------------------------------------
 project = 'ES Client API FreeRTOS'
